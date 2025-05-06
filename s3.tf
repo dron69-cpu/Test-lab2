@@ -3,7 +3,7 @@
 ##############################
 
 resource "aws_s3_bucket" "private_bucket" {
-  bucket = "tf-private-bucket-${random_id.rand.hex}"
+  bucket = "private-bucket-${random_id.rand.hex}"
   acl    = "private"
 
   tags = {
@@ -17,7 +17,7 @@ resource "random_id" "rand" {
 }
 
 resource "aws_iam_policy" "s3_access_policy" {
-  name        = "tf-private-ec2-s3-access"
+  name        = "private-ec2-s3-access"
   description = "Allow private EC2 instance to access S3"
 
   policy = jsonencode({

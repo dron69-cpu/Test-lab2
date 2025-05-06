@@ -3,18 +3,18 @@
 ##############################
 
 resource "aws_lb" "nlb" {
-  name               = "tf-nlb"
+  name               = "nlb"
   internal           = false  # <-- Public NLB
   load_balancer_type = "network"
   subnets            = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
 
   tags = {
-    Name = "tf-nlb"
+    Name = "nlb"
   }
 }
 
 resource "aws_lb_target_group" "nlb_tg" {
-  name        = "tf-nlb-tg"
+  name        = "nlb-tg"
   port        = 80
   protocol    = "TCP"
   vpc_id      = aws_vpc.main.id
@@ -43,7 +43,7 @@ resource "aws_lb_listener" "nlb_listener" {
 ##############################
 
 resource "aws_lb" "alb" {
-  name               = "tf-alb"
+  name               = "alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.public_sg.id]
@@ -51,7 +51,7 @@ resource "aws_lb" "alb" {
 }
 
 resource "aws_lb_target_group" "tg" {
-  name     = "tf-tg"
+  name     = "alb-tg"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.main.id
@@ -72,6 +72,7 @@ resource "aws_lb_listener" "http_redirect" {
   }
 }
 
+/*
 resource "aws_lb_listener" "https" {
   load_balancer_arn = aws_lb.alb.arn
   port              = 443
@@ -84,3 +85,4 @@ resource "aws_lb_listener" "https" {
     target_group_arn = aws_lb_target_group.tg.arn
   }
 }
+*/

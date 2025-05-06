@@ -8,7 +8,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "tf-vpc"
+    Name = "vpc"
   }
 }
 
@@ -23,7 +23,7 @@ resource "aws_subnet" "public_subnet_1" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "tf-public-subnet-1"
+    Name = "public-subnet-1"
   }
 }
 
@@ -34,7 +34,7 @@ resource "aws_subnet" "public_subnet_2" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "tf-public-subnet-2"
+    Name = "public-subnet-2"
   }
 }
 
@@ -44,7 +44,7 @@ resource "aws_subnet" "private_subnet" {
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "tf-private-subnet"
+    Name = "private-subnet"
   }
 }
 
@@ -78,7 +78,7 @@ resource "aws_route_table_association" "public_assoc_2" {
 resource "aws_eip" "nat_eip" {
   domain = "vpc"
   tags = {
-    Name = "tf-nat-eip"
+    Name = "nat-eip"
   }
 }
 
@@ -88,7 +88,7 @@ resource "aws_nat_gateway" "nat_gw" {
   depends_on    = [aws_internet_gateway.igw]
 
   tags = {
-    Name = "tf-nat-gateway"
+    Name = "nat-gateway"
   }
 }
 
@@ -101,7 +101,7 @@ resource "aws_route_table" "private_rt" {
   }
 
   tags = {
-    Name = "tf-private-rt"
+    Name = "private-rt"
   }
 }
 

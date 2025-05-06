@@ -31,3 +31,15 @@ variable "instance_type" {
 variable "domain_name" {
   default = "test.cdcmg.click"
 }
+
+resource "aws_ec2_transit_gateway" "main_tgw" {
+  description                     = "Main TGW for peering"
+ auto_accept_shared_attachments = "enable"
+default_route_table_association = "enable"
+default_route_table_propagation = "enable"
+
+
+  tags = {
+    Name = "main-tgw"
+  }
+}
